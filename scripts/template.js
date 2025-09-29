@@ -5,9 +5,13 @@ function showTilesTemplate(index) {
   let backgroundType = singlePkmns[index].types[0].type.name;
   let pkmnTypes = singlePkmns[index].types;
   let types = pkmnTypes.map((t) => t.type.name);
+  console.log(pkmnId);
+  
+  console.log(types);
+  
 
-  content.innerHTML += `<div class="grow" onclick="switchOnOverlay(0)">
-    <img class="${backgroundType}" src="${pkmnImage}" alt="Image of ${pkmnName}">
+  content.innerHTML += `<div id="${index}" class="grow bg-${backgroundType}" onclick="switchOnOverlay(0)" style="background-color: var(--${types[0]})">
+    <img class="pkmnTileImg" src="${pkmnImage}" alt="Image of ${pkmnName}">
     ${allPkmn[index].name.toUpperCase()}<br>
     ${types.map((type) => `<span class="type ${type}">${type}</span>`).join("")}    
     </div>`;
