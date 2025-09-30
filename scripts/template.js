@@ -10,7 +10,7 @@ function showTilesTemplate(index) {
   console.log(types);
 
   content.innerHTML += `
-  <div id="${index}" class="pkmn-tile bg-${backgroundType}" onclick="switchOnOverlay(0)" style="background-color: var(--${types[0]})">
+  <div id="${index}" class="pkmn-tile bg-${backgroundType}" onclick="switchOnOverlay(${index})" style="background-color: var(--${types[0]})">
     ${allPkmn[index].name.toUpperCase()}
     <span>ID# ${pkmnId}</span>
     <img class="pkmn-tile-img" src="${pkmnImage}" alt="Image of ${pkmnName}">

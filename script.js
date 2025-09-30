@@ -3,16 +3,14 @@ let allPkmn = [];
 let offset = 0;
 let limit = 10;
 let singlePkmns = [];
-let content = document.getElementById("content");
+let content = document.getElementById("pkmn-content");
 
 async function init() {
   allPkmn = await loadAllPkmn("pokemon/", offset, limit);
-
   for (let index = 0; index < allPkmn.length; index++) {
     const pokemon = await loadSinglePokemons(index);
     singlePkmns.push(pokemon);
   }
-
   for (let index = 0; index < allPkmn.length; index++) {
     showTilesTemplate(index);
   }
