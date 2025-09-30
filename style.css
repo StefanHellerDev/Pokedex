@@ -1,25 +1,42 @@
 :root {
-  --grass: #9bcc4f;
+  --grass: #7ac74c;
+  --fire: #ee8130;
+  --water: #6390f0;
+  --bug: #a6b91a;
+  --normal: #a8a77a;
+  --fighting: #c22e28;
+  --flying: #a98ff3;
+  --poison: #a33ea1;
+  --ground: #e2bf65;
+  --rock: #b6a136;
+  --ghost: #735797;
+  --steel: #b7b7ce;
+  --electric: #f7d02c;
+  --psychic: #f95587;
+  --ice: #96d9d6;
+  --dragon: #6f35fc;
+  --dark: #705746;
+  --fairy: #d685ad;
 }
 
 body {
   max-width: 1440px;
   font-family: "Rubik", sans-serif;
   font-weight: 300;
-  /* font-size: 16px; */
+  font-size: 16px;
 }
 
 header {
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* align-items: center; */
   padding-left: 144px;
   padding-right: 144px;
-  height: 100px;
+  /* height: 100px; */
   border-bottom: 1px solid rgba(225, 210, 188, 0.53);
 }
 
 header img {
-  height: 64px;
+  height: 100px;
   margin: 8px;
 }
 
@@ -31,33 +48,40 @@ main {
   padding-bottom: 40px;
   padding-left: 144px;
   padding-right: 144px;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  max-width: 1440px;
+  font-size: 24px;
 }
 
 .content {
   display: flex;
   justify-content: center;
-  gap: 16px;
   flex-wrap: wrap;
+  gap: 16px;
 }
 
-.grow {
+.pkmn-tile {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  padding: 8px;
   transition: all 0.2s ease-in-out;
   box-shadow: 5px 5px 6px 5px #dfe6ff;
-  width: 350px;
-  height: 200px;
+  width: 250px;
+  /* height: 350px; */
   border-radius: 8px;
 }
 
-.grow:hover {
-  transform: scale(1.05);
+.pkmn-tile:hover {
+  transform: scale(1.04);
 }
 
-.pkmnTileImg {
-  height: 130px;
+.pkmn-tile-img {
+  max-height: 210px;
+  width: auto;
+  object-fit: contain;
+}
+
+.pkmn-tile-type {
+  display: flex;
+  justify-content: space-between;
 }

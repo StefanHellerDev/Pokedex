@@ -1,7 +1,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let allPkmn = [];
 let offset = 0;
-let limit = 2;
+let limit = 10;
 let singlePkmns = [];
 let content = document.getElementById("content");
 
