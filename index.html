@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.jpg" />
   <title>Pokedex</title>
-  <link rel="stylesheet" href="./styles/standard.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./styles/standard.css">
   <link rel="stylesheet" href="./styles/assets.css">
   <script src="./script.js" defer></script>
   <script src="./scripts/template.js" defer></script>
@@ -21,9 +21,13 @@
   <main>
     <div id="pkmn-content" class="content"></div>
     <div>
-      <button>Load more</button>
+      <button class="loadMoreButton" onclick="loadPkmn()">Load more Pokemons</button>
     </div>
   </main>
+
+  <div id="loader-overlay" class="loaderOverlay d_none">
+    <img class="loaderImg" src="./assets/icons/Pokeball loading animation.gif" alt="">
+  </div>
 
   <footer>
   </footer>
