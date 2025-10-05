@@ -1,14 +1,15 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
-let allPkmn = [];
+let listOfAllPkmn = [];
 let offset = 0;
-let limit = 5;
+let limit = 6;
 let singlePkmns = [];
 let content = document.getElementById("pkmn-content");
 
 async function init() {
   loaderOn();
-  allPkmn = await fetchPkmn("pokemon/", 0, 10000);
+  listOfAllPkmn = await fetchPkmn("pokemon/", 0, 10000);
   await loadPkmn();
+  switchOnOverlay(4); // Test!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 async function loadPkmn() {
@@ -21,7 +22,7 @@ async function loadPkmn() {
     showTilesTemplate(index + offset);
   }
   offset = offset + limit;
-  setTimeout(loaderOff, 1);
+  setTimeout(loaderOff, 500);
   return;
 }
 
@@ -32,7 +33,7 @@ async function fetchPkmn(ext, offset, limit) {
 }
 
 async function loadSinglePokemons(index) {
-  let response = await fetch(allPkmn[index].url);
+  let response = await fetch(listOfAllPkmn[index].url);
   response = await response.json();
   return response;
 }
@@ -48,17 +49,27 @@ function loaderOff() {
 }
 
 function switchOnOverlay(index) {
+  disableMainScrolling();
   let overlayRef = document.getElementById("overlay");
   overlayRef.classList.remove("d_none");
   let dialogRef = document.getElementById("dialog");
-  dialogRef.innerHTML = renderPkmn(index);
+  dialogRef.innerHTML = renderBigPkmn(index);
 }
 
 function switchOffOverlay() {
+  enableMainScrolling();
   let overlayRef = document.getElementById("overlay");
   overlayRef.classList.add("d_none");
 }
 
 function bubblingPropagation(event) {
   event.stopPropagation();
+}
+
+function disableMainScrolling() {
+  document.body.style.overflow = "hidden";
+}
+
+function enableMainScrolling() {
+  document.body.style.overflow = "";
 }

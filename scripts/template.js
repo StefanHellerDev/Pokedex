@@ -12,7 +12,7 @@ function showTilesTemplate(index) {
 
   content.innerHTML += `
   <div id="${index}" class="pkmn-tile bg-${backgroundType}" onclick="switchOnOverlay(${index})" style="background-color: var(--${types[0]})">
-    ${allPkmn[index].name.toUpperCase()}
+    ${listOfAllPkmn[index].name.toUpperCase()}
     <span>ID# ${pkmnId}</span>
     <img class="pkmn-tile-img" src="${pkmnImage}" alt="Image of ${pkmnName}">
     <div class="pkmn-tile-type">
@@ -21,21 +21,17 @@ function showTilesTemplate(index) {
   </div>`;
 }
 
-function renderPkmn(index) {
+function renderBigPkmn(index) {
   let pkmnName = singlePkmns[index].name;
   let pkmnId = singlePkmns[index].id;
   let pkmnImage = singlePkmns[index].sprites.other["official-artwork"].front_default;
   let backgroundType = singlePkmns[index].types[0].type.name;
   let pkmnTypes = singlePkmns[index].types;
   let types = pkmnTypes.map((t) => t.type.name);
-
-  console.log(index);
-  console.log(pkmnId);
-  console.log(types);
-
+  
   return `
-  <div id="${index}" class="pkmn-tile bg-${backgroundType}" style="background-color: var(--${types[0]})">
-    ${allPkmn[index].name.toUpperCase()}
+  <div id="${index}" class="dialog bg-${backgroundType}" style="background-color: var(--${types[0]})">
+    ${listOfAllPkmn[index].name.toUpperCase()}
     <span>ID# ${pkmnId}</span>
     <img class="pkmn-tile-img" src="${pkmnImage}" alt="Image of ${pkmnName}">
     <div class="pkmn-tile-type">
