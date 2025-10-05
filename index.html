@@ -15,13 +15,17 @@
 
 <body onload="init()">
   <header>
-    <img src="./assets/img/International_Pokémon_logo.svg.png" alt="Pokemon Logo">
+    <div class="container">
+      <img src="./assets/img/International_Pokémon_logo.svg.png" alt="Pokemon Logo">
+    </div>
   </header>
 
   <main>
-    <div id="pkmn-content" class="content"></div>
-    <div>
-      <button class="loadMoreButton" onclick="loadPkmn()">Load more Pokemons</button>
+    <div class="container">
+      <div id="pkmn-content" class="content"></div>
+      <div class="flexCenter">
+        <button class="loadMoreButton" onclick="loadPkmn()">Load more Pokemons</button>
+      </div>
     </div>
   </main>
 
@@ -29,7 +33,15 @@
     <img class="loaderImg" src="./assets/icons/Pokeball loading animation.gif" alt="">
   </div>
 
+  <div id="overlay" class="overlay d_none" onclick="switchOffOverlay()">
+    <div class="dialog" id="dialog" onclick="bubblingPropagation(event)">
+    </div>
+  </div>
+
   <footer>
+    <div class="container">
+
+    </div>
   </footer>
 
 </body>

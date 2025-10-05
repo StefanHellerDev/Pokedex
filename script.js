@@ -46,3 +46,19 @@ function loaderOff() {
   let overlayRef = document.getElementById("loader-overlay");
   overlayRef.classList.add("d_none");
 }
+
+function switchOnOverlay(index) {
+  let overlayRef = document.getElementById("overlay");
+  overlayRef.classList.remove("d_none");
+  let dialogRef = document.getElementById("dialog");
+  dialogRef.innerHTML = renderPkmn(index);
+}
+
+function switchOffOverlay() {
+  let overlayRef = document.getElementById("overlay");
+  overlayRef.classList.add("d_none");
+}
+
+function bubblingPropagation(event) {
+  event.stopPropagation();
+}
