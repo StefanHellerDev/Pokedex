@@ -5,11 +5,24 @@ let limit = 6;
 let singlePkmns = [];
 let content = document.getElementById("pkmn-content");
 
+let pkmnName = [];
+let pkmnId = [];
+let pkmnImage = [];
+let backgroundType = [];
+let pkmnTypes = [];
+let types = [];
+
 async function init() {
   loaderOn();
   listOfAllPkmn = await fetchPkmn("pokemon/", 0, 10000);
   await loadPkmn();
-  switchOnOverlay(4); // Test!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  switchOnOverlay(2); // Test!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+}
+
+async function fetchPkmn(ext, offset, limit) {
+  let response = await fetch(BASE_URL + ext + "?offset=" + offset + "&limit=" + limit);
+  response = await response.json();
+  return response.results;
 }
 
 async function loadPkmn() {
@@ -24,12 +37,6 @@ async function loadPkmn() {
   offset = offset + limit;
   setTimeout(loaderOff, 500);
   return;
-}
-
-async function fetchPkmn(ext, offset, limit) {
-  let response = await fetch(BASE_URL + ext + "?offset=" + offset + "&limit=" + limit);
-  response = await response.json();
-  return response.results;
 }
 
 async function loadSinglePokemons(index) {
@@ -52,8 +59,8 @@ function switchOnOverlay(index) {
   disableMainScrolling();
   let overlayRef = document.getElementById("overlay");
   overlayRef.classList.remove("d_none");
-  let dialogRef = document.getElementById("dialog");
-  dialogRef.innerHTML = renderBigPkmn(index);
+  let pkmnCardRef = document.getElementById("dialog");
+  pkmnCardRef.innerHTML = renderPkmnCard(index);
 }
 
 function switchOffOverlay() {

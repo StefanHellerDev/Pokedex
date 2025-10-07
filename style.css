@@ -1,22 +1,40 @@
 :root {
   --grass: #7ac74c;
+  --grass2: #79c74cd8;
   --fire: #ee8130;
+  --fire2: #ee8130d8;
   --water: #6390f0;
+  --water2: #6390f0d8;
   --bug: #a6b91a;
+  --bug2: #a6b91ad8;
   --normal: #a8a77a;
+  --normal2: #a8a77ad8;
   --fighting: #c22e28;
+  --fighting2: #c22e28d8;
   --flying: #a98ff3;
+  --flying2: #a98ff3d8;
   --poison: #a33ea1;
+  --poison2: #a33ea1d8;
   --ground: #e2bf65;
+  --ground2: #e2bf65d8;
   --rock: #b6a136;
+  --rock2: #b6a136d8;
   --ghost: #735797;
+  --ghost2: #735797d8;
   --steel: #b7b7ce;
+  --steel2: #b7b7ced8;
   --electric: #f7d02c;
+  --electric2: #f7d02cd8;
   --psychic: #f95587;
+  --psychic2: #f95587d8;
   --ice: #96d9d6;
+  --ice2: #96d9d6d8;
   --dragon: #6f35fc;
+  --dragon2: #6f35fcd8;
   --dark: #705746;
+  --dark2: #705746d8;
   --fairy: #d685ad;
+  --fairy2: #d685add8;
 }
 
 body {
@@ -117,27 +135,98 @@ main {
   left: 0;
   height: 100vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dialog {
   z-index: 20;
+  width: 600px;
+  height: 90%;
+}
+
+.pkmnCardOuter {
+  z-index: 30;
+  border-radius: 25px;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.pkmnCardInner {
+  z-index: 40;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 25px;
   padding: 16px;
+  font-weight: bold;
+  color: white;
 }
 
-.dialogHeader {
-  width: 80%;
-  position: inherit;
-  top: 4%;
-  left: 10%;
+.cardTypesImg {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: flex-end;
+  font-weight: normal;
 }
+
+.pkmn-card-type {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0px 48px;
+  padding-bottom: 24px;
+}
+
+.type {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  border-radius: 50%;
+  border: 1px solid whitesmoke;
+}
+
+.pkmnCardInfoPart {
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  /* padding: 16px; */
+  color: black;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+}
+
+.pkmnCardInfoPartHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 32px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.pkmnCardInfoPartHeaderButtons {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pkmnCardInfoSection {
+  z-index: 60;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  padding-top: 8px;
+  color: black;
+  background-color: gray;  
+}
+
+
+
 
 footer {
   position: fixed;

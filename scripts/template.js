@@ -1,15 +1,5 @@
 function showTilesTemplate(index) {
-  let pkmnName = singlePkmns[index].name;
-  let pkmnId = singlePkmns[index].id;
-  let pkmnImage = singlePkmns[index].sprites.other["official-artwork"].front_default;
-  let backgroundType = singlePkmns[index].types[0].type.name;
-  let pkmnTypes = singlePkmns[index].types;
-  let types = pkmnTypes.map((t) => t.type.name);
-
-  console.log(index);
-  console.log(pkmnId);
-  console.log(types);
-
+  getSinglePkmnInfos(index);
   content.innerHTML += `
   <div id="${index}" class="pkmn-tile bg-${backgroundType}" onclick="switchOnOverlay(${index})" style="background-color: var(--${types[0]})">
     ${listOfAllPkmn[index].name.toUpperCase()}
@@ -19,23 +9,41 @@ function showTilesTemplate(index) {
       ${types.map((type) => `<span class="type ${type}">${type}</span>`).join("")}
     </div>
   </div>`;
+  return;
 }
 
-function renderBigPkmn(index) {
-  let pkmnName = singlePkmns[index].name;
-  let pkmnId = singlePkmns[index].id;
-  let pkmnImage = singlePkmns[index].sprites.other["official-artwork"].front_default;
-  let backgroundType = singlePkmns[index].types[0].type.name;
-  let pkmnTypes = singlePkmns[index].types;
-  let types = pkmnTypes.map((t) => t.type.name);
-  
+function getSinglePkmnInfos(index) {
+  pkmnName = singlePkmns[index].name;
+  pkmnId = singlePkmns[index].id;
+  pkmnImage = singlePkmns[index].sprites.other["official-artwork"].front_default;
+  backgroundType = singlePkmns[index].types[0].type.name;
+  pkmnTypes = singlePkmns[index].types;
+  types = pkmnTypes.map((t) => t.type.name);
+}
+
+function renderPkmnCard(index) {
+  getSinglePkmnInfos(index);
+    
   return `
-  <div id="${index}" class="dialog bg-${backgroundType}" style="background-color: var(--${types[0]})">
-    ${listOfAllPkmn[index].name.toUpperCase()}
-    <span>ID# ${pkmnId}</span>
-    <img class="pkmn-tile-img" src="${pkmnImage}" alt="Image of ${pkmnName}">
-    <div class="pkmn-tile-type">
-      ${types.map((type) => `<span class="type ${type}">${type}</span>`).join("")}
+  <div class="pkmnCardOuter" style="background-image: linear-gradient(to right, var(--${types[0]}2), #181717)">
+    <div id="${index}" class="pkmnCardInner bg-${backgroundType}" style="background-color: var(--${types[0]})">
+      <span class="text-center">${pkmnName.toUpperCase()} #${pkmnId}</span>
+      <div class="cardTypesImg">
+        <div class="pkmn-card-type">
+          ${types.map((type) => `<span class="type">${type}</span>`).join("")}
+        </div>
+        <img class="pkmn-tile-img" src="${pkmnImage}" alt="Image of ${pkmnName}">        
+      </div>
+      <div class="pkmnCardInfoPart">
+        <div class="pkmnCardInfoPartHeader">
+          <span class="pkmnCardInfoPartHeaderButtons">About</span>
+          <span class="pkmnCardInfoPartHeaderButtons">Base Stats</span>
+          <span class="pkmnCardInfoPartHeaderButtons">Gender</span>
+          <span class="pkmnCardInfoPartHeaderButtons">Shiny</span>
+        </div>
+        <div id="pkmnCardInfoSection" class="pkmnCardInfoSection">
+        </div>
+      </div>      
     </div>
   </div>`;
 }
