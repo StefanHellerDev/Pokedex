@@ -5,12 +5,19 @@ let limit = 6;
 let singlePkmns = [];
 let content = document.getElementById("pkmn-content");
 
+// cardInfoSection = "";
+// console.log(cardInfoSection);
+
+
+let cardInfoSectionPart = 0;
+
 let pkmnName = [];
 let pkmnId = [];
 let pkmnImage = [];
 let backgroundType = [];
 let pkmnTypes = [];
 let types = [];
+let pkmnSpecies = [];
 
 async function init() {
   loaderOn();
@@ -61,6 +68,7 @@ function switchOnOverlay(index) {
   overlayRef.classList.remove("d_none");
   let pkmnCardRef = document.getElementById("dialog");
   pkmnCardRef.innerHTML = renderPkmnCard(index);
+  cardInfoSectionChanger(index, 1);
 }
 
 function switchOffOverlay() {
@@ -80,3 +88,27 @@ function disableMainScrolling() {
 function enableMainScrolling() {
   document.body.style.overflow = "";
 }
+
+function cardInfoSectionChanger(index, cardInfoSectionPart) {
+  let cardInfoSection = document.getElementById("pkmnCard-infoSection");
+  if (cardInfoSectionPart == 1) {
+    cardInfoSection.innerHTML = renderPkmnAbout(index);
+  } else if (cardInfoSectionPart == 2) {
+    cardInfoSection.innerHTML = renderPkmnBasestats(index);
+  } else if (cardInfoSectionPart == 3) {
+    cardInfoSection.innerHTML = renderPkmnGender(index);
+  } else if (cardInfoSectionPart == 4) {
+    cardInfoSection.innerHTML = renderPkmnShiny(index);
+  } else {
+    console.error("Error");
+  }
+}
+
+function firstUpperLetter(num) {
+  const word = num;
+  const firstLetter = word.charAt(0);
+  const firstLetterCap = firstLetter.toUpperCase();
+  const remainingLetters = word.slice(1);
+  return firstLetterCap + remainingLetters;
+}
+
