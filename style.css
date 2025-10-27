@@ -204,7 +204,7 @@ main {
 
 .pkmnCardInfoPartHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 16px 32px;
   font-size: 20px;
   font-weight: normal;
@@ -228,12 +228,14 @@ main {
   font-weight: normal;
 }
 
-th, td {
-  padding: 16px;
+table {
+  width: 100%;
 }
 
-
-
+th, td {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
 
 footer {
   position: fixed;

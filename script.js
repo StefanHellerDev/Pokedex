@@ -8,7 +8,6 @@ let content = document.getElementById("pkmn-content");
 // cardInfoSection = "";
 // console.log(cardInfoSection);
 
-
 let cardInfoSectionPart = 0;
 
 let pkmnName = [];
@@ -111,4 +110,3 @@ function firstUpperLetter(num) {
   const remainingLetters = word.slice(1);
   return firstLetterCap + remainingLetters;
 }
-

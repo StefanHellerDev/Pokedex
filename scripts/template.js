@@ -29,7 +29,12 @@ function getSinglePkmnInfos(index) {
   pkmnAbilities = singlePkmns[index].abilities;
   abilities = pkmnAbilities.map((t) => t.ability.name);
   abilities = abilities.map(firstUpperLetter);
-  
+  pkmnHp = singlePkmns[index].stats[0].base_stat;
+  pkmnAttack = singlePkmns[index].stats[1].base_stat;
+  pkmnDefense = singlePkmns[index].stats[2].base_stat;
+  pkmnSpecialattack = singlePkmns[index].stats[3].base_stat;
+  pkmnSpecialdefense = singlePkmns[index].stats[4].base_stat;
+  pkmnSpeed = singlePkmns[index].stats[5].base_stat;
 }
 
 function renderPkmnCard(index) {
@@ -49,8 +54,6 @@ function renderPkmnCard(index) {
         <div class="pkmnCardInfoPartHeader">
           <span class="pkmnCardInfoPartHeaderButtons" onclick="cardInfoSectionChanger(${index}, 1)">About</span>
           <span class="pkmnCardInfoPartHeaderButtons" onclick="cardInfoSectionChanger(${index}, 2)">Base Stats</span>
-          <span class="pkmnCardInfoPartHeaderButtons" onclick="cardInfoSectionChanger(${index}, 3)">Gender</span>
-          <span class="pkmnCardInfoPartHeaderButtons" onclick="cardInfoSectionChanger(${index}, 4)">Shiny</span>
         </div>
         <div id="pkmnCard-infoSection" class="pkmnCardInfoSection">
         </div>
@@ -83,16 +86,22 @@ function renderPkmnBasestats(index) {
   return `
   <table>
     <tr>
-      <td>Base</td>
+      <td><label for="pkmnHp">HP:</label></td><td>${pkmnHp}</td><td><progress id="pkmnHp" value="${pkmnHp}" max="100">${pkmnHp}</progress></td>
     </tr>
     <tr>
-      <td>Height:</td><td>${pkmnHeight} cm</td>
+      <td><label for="pkmnAttack">Attack:</label></td><td>${pkmnAttack}</td><td><progress id="pkmnAttack" value="${pkmnAttack}" max="100">${pkmnAttack}</progress></td>
     </tr>
     <tr>
-      <td>Weight:</td><td>${pkmnWeight} kg</td>
+      <td><label for="pkmnDefense">Defense:</label></td><td>${pkmnDefense}</td><td><progress id="pkmnDefense" value="${pkmnDefense}" max="100">${pkmnDefense}</progress></td>
     </tr>
     <tr>
-      <td>Abilities:</td><td>${abilities.map((ability) => `<span">${ability}</span>`).join(", ")}</td>
+      <td><label for="pkmnSpecialattack">Spec. attack:</label></td><td>${pkmnSpecialattack}</td><td><progress id="pkmnSpecialattack" value="${pkmnSpecialattack}" max="100">${pkmnSpecialattack}</progress></td>
+    </tr>
+    <tr>
+      <td><label for="pkmnSpecialdefense">Spec. defense:</label></td><td>${pkmnSpecialdefense}</td><td><progress id="pkmnSpecialdefense" value="${pkmnSpecialdefense}" max="100">${pkmnSpecialdefense}</progress></td>
+    </tr>
+    <tr>
+      <td><label for="pkmnSpeed">Speed:</label></td><td>${pkmnSpeed}</td><td><progress id="pkmnSpeed" value="${pkmnSpeed}" max="100">${pkmnSpeed}</progress></td>
     </tr>
   `;
 }
