@@ -235,6 +235,22 @@ table {
 th, td {
   padding-top: 16px;
   padding-bottom: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+table .tdSmall {
+  width: auto;
+  text-align: right;
+  white-space: nowrap;
+}
+
+table .tdBig {
+  width: 100%;
+}
+
+progress {
+  width: 100%;
 }
 
 footer {
@@ -245,4 +261,19 @@ footer {
   width: 100%;
   background-color: rgb(245, 244, 244);
   margin-top: 200px;
+}
+
+.dialogNav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.dialogNav img {
+  height: 80px;
+  cursor: pointer;
+  text-decoration: none;
 }

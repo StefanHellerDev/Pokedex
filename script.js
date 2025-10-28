@@ -1,7 +1,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let listOfAllPkmn = [];
 let offset = 0;
-let limit = 6;
+let limit = 20;
 let singlePkmns = [];
 let content = document.getElementById("pkmn-content");
 
@@ -63,6 +63,12 @@ function loaderOff() {
 
 function switchOnOverlay(index) {
   disableMainScrolling();
+  if (index < 0) {
+    index = offset - 1;
+  } else if (index == offset) {
+    index = 0;
+  }
+  
   let overlayRef = document.getElementById("overlay");
   overlayRef.classList.remove("d_none");
   let pkmnCardRef = document.getElementById("dialog");

@@ -57,7 +57,13 @@ function renderPkmnCard(index) {
         </div>
         <div id="pkmnCard-infoSection" class="pkmnCardInfoSection">
         </div>
-      </div>      
+      </div>
+
+      <div class="dialogNav">
+          <img src="./assets/img/arrow_circle_left_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="Arrow Circle Left" onclick="switchOnOverlay(${index - 1})">
+          <img src="./assets/img/arrow_circle_right_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="Arrow Circle Right" onclick="switchOnOverlay(${index + 1})">
+       </div>
+
     </div>
   </div>`;
 }
@@ -67,16 +73,16 @@ function renderPkmnAbout(index) {
   return `
   <table>
     <tr>
-      <td>Species:</td><td>${pkmnSpecies}</td>
+      <td class="tdSmall">Species:</td><td>${pkmnSpecies}</td>
     </tr>
     <tr>
-      <td>Height:</td><td>${pkmnHeight} cm</td>
+      <td class="tdSmall">Height:</td><td>${pkmnHeight} cm</td>
     </tr>
     <tr>
-      <td>Weight:</td><td>${pkmnWeight} kg</td>
+      <td class="tdSmall">Weight:</td><td>${pkmnWeight} kg</td>
     </tr>
     <tr>
-      <td>Abilities:</td><td>${abilities.map((ability) => `<span">${ability}</span>`).join(", ")}</td>
+      <td class="tdSmall">Abilities:</td><td>${abilities.map((ability) => `<span">${ability}</span>`).join(", ")}</td>
     </tr>
   `;
 }
@@ -86,22 +92,22 @@ function renderPkmnBasestats(index) {
   return `
   <table>
     <tr>
-      <td><label for="pkmnHp">HP:</label></td><td>${pkmnHp}</td><td><progress id="pkmnHp" value="${pkmnHp}" max="100">${pkmnHp}</progress></td>
+      <td class="tdSmall"><label for="pkmnHp">HP:</label></td><td class="tdSmall">${pkmnHp}</td><td class="tdBig"><progress id="pkmnHp" value="${pkmnHp}" max="100">${pkmnHp}</progress></td>
     </tr>
     <tr>
-      <td><label for="pkmnAttack">Attack:</label></td><td>${pkmnAttack}</td><td><progress id="pkmnAttack" value="${pkmnAttack}" max="100">${pkmnAttack}</progress></td>
+      <td class="tdSmall"><label for="pkmnAttack">Attack:</label></td><td class="tdSmall">${pkmnAttack}</td><td class="tdBig"><progress id="pkmnAttack" value="${pkmnAttack}" max="100">${pkmnAttack}</progress></td>
     </tr>
     <tr>
-      <td><label for="pkmnDefense">Defense:</label></td><td>${pkmnDefense}</td><td><progress id="pkmnDefense" value="${pkmnDefense}" max="100">${pkmnDefense}</progress></td>
+      <td class="tdSmall"><label for="pkmnDefense">Defense:</label></td><td class="tdSmall">${pkmnDefense}</td><td class="tdBig"><progress id="pkmnDefense" value="${pkmnDefense}" max="100">${pkmnDefense}</progress></td>
     </tr>
     <tr>
-      <td><label for="pkmnSpecialattack">Spec. attack:</label></td><td>${pkmnSpecialattack}</td><td><progress id="pkmnSpecialattack" value="${pkmnSpecialattack}" max="100">${pkmnSpecialattack}</progress></td>
+      <td class="tdSmall"><label for="pkmnSpecialattack">Spec. attack:</label></td><td class="tdSmall">${pkmnSpecialattack}</td><td class="tdBig"><progress id="pkmnSpecialattack" value="${pkmnSpecialattack}" max="100">${pkmnSpecialattack}</progress></td>
     </tr>
     <tr>
-      <td><label for="pkmnSpecialdefense">Spec. defense:</label></td><td>${pkmnSpecialdefense}</td><td><progress id="pkmnSpecialdefense" value="${pkmnSpecialdefense}" max="100">${pkmnSpecialdefense}</progress></td>
+      <td class="tdSmall"><label for="pkmnSpecialdefense">Spec. defense:</label></td><td class="tdSmall">${pkmnSpecialdefense}</td><td class="tdBig"><progress id="pkmnSpecialdefense" value="${pkmnSpecialdefense}" max="100">${pkmnSpecialdefense}</progress></td>
     </tr>
     <tr>
-      <td><label for="pkmnSpeed">Speed:</label></td><td>${pkmnSpeed}</td><td><progress id="pkmnSpeed" value="${pkmnSpeed}" max="100">${pkmnSpeed}</progress></td>
+      <td class="tdSmall"><label for="pkmnSpeed">Speed:</label></td><td class="tdSmall">${pkmnSpeed}</td><td class="tdBig"><progress id="pkmnSpeed" value="${pkmnSpeed}" max="100">${pkmnSpeed}</progress></td>
     </tr>
   `;
 }
