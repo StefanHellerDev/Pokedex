@@ -15,8 +15,12 @@
 
 <body onload="init()">
   <header>
-    <div class="container">
+    <div class="container search">
       <img src="./assets/img/International_Pokémon_logo.svg.png" alt="Pokemon Logo">
+      <div>        
+        <input type="search" aria-label="Search Pokemons" inputmode="search"
+         placeholder="Pokemon Name" id="pkmnSearch" class="pkmnSearch" oninput="filterByName(event)">
+      </div>
     </div>
   </header>
 

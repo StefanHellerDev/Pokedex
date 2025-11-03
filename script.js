@@ -22,7 +22,7 @@ async function init() {
   loaderOn();
   listOfAllPkmn = await fetchPkmn("pokemon/", 0, 10000);
   await loadPkmn();
-  switchOnOverlay(2); // Test!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // switchOnOverlay(2); // Test!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 async function fetchPkmn(ext, offset, limit) {
@@ -115,4 +115,11 @@ function firstUpperLetter(num) {
   const firstLetterCap = firstLetter.toUpperCase();
   const remainingLetters = word.slice(1);
   return firstLetterCap + remainingLetters;
+}
+
+function filterByName(event) {
+  const searchTerm = event.target.value;
+  console.log(searchTerm);
+  // const result = listOfAllPkmn.filter((el) => el.toLowerCase().includes(searchTerm.toLowerCase()));
+  // console.log(result);  
 }
