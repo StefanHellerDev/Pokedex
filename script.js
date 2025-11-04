@@ -1,9 +1,10 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let listOfAllPkmn = [];
 let offset = 0;
-let limit = 20;
+let limit = 12;
 let singlePkmns = [];
 let content = document.getElementById("pkmn-content");
+let searchTerm = "";
 
 // cardInfoSection = "";
 // console.log(cardInfoSection);
@@ -21,7 +22,8 @@ let pkmnSpecies = [];
 async function init() {
   loaderOn();
   listOfAllPkmn = await fetchPkmn("pokemon/", 0, 10000);
-  await loadPkmn();
+  await loadDisplayPkmn(listOfAllPkmn, limit, offset);
+  offset = offset + limit;
   // switchOnOverlay(2); // Test!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
@@ -31,22 +33,22 @@ async function fetchPkmn(ext, offset, limit) {
   return response.results;
 }
 
-async function loadPkmn() {
+async function loadDisplayPkmn(array, count, start) {
+  singlePkmns = [];
   loaderOn();
-  for (let index = 0; index < limit; index++) {
-    const pokemon = await loadSinglePokemons(index + offset);
+  for (let index = 0; index < count; index++) {
+    const pokemon = await loadSinglePokemons(array, index + start);
     singlePkmns.push(pokemon);
   }
-  for (let index = 0; index < limit; index++) {
-    showTilesTemplate(index + offset);
-  }
-  offset = offset + limit;
+  for (let index = 0; index < count; index++) {
+    showTilesTemplate(array, index + start);
+  }  
   setTimeout(loaderOff, 500);
   return;
 }
 
-async function loadSinglePokemons(index) {
-  let response = await fetch(listOfAllPkmn[index].url);
+async function loadSinglePokemons(array, index) {
+  let response = await fetch(array[index].url);
   response = await response.json();
   return response;
 }
@@ -68,7 +70,7 @@ function switchOnOverlay(index) {
   } else if (index == offset) {
     index = 0;
   }
-  
+
   let overlayRef = document.getElementById("overlay");
   overlayRef.classList.remove("d_none");
   let pkmnCardRef = document.getElementById("dialog");
@@ -118,13 +120,28 @@ function firstUpperLetter(num) {
 }
 
 function searchInput(event) {
-  const searchTerm = event.target.value;
+  searchTerm = event.target.value;
   const pkmnSearchButton = document.getElementById("pkmnSearchButton");
   if (searchTerm.length >= 3) {
     pkmnSearchButton.removeAttribute("disabled");
   } else {
     pkmnSearchButton.setAttribute("disabled", "");
   }
-  
   console.log(searchTerm);
 }
+
+function pkmnFind() {
+  console.log("search");
+  searchResult = filterItems(listOfAllPkmn, searchTerm);
+  console.table(searchResult);
+  content.innerHTML = "";
+  loadDisplayPkmn(searchResult, searchResult.length, 0);
+  const loadButton = document.getElementById("loadMoreButton");
+  loadButton.classList.add("d_none");
+  // document.getElementById("pkmnSearch").addEventListener("search", init());
+}
+
+function filterItems(arr, query) {
+  return arr.filter((el) => el.name.toLowerCase().includes(query.toLowerCase()));
+}
+

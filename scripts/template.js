@@ -1,8 +1,8 @@
-function showTilesTemplate(index) {
+function showTilesTemplate(array, index) {
   getSinglePkmnInfos(index);
   content.innerHTML += `
   <div id="${index}" class="pkmn-tile bg-${backgroundType}" onclick="switchOnOverlay(${index})" style="background-color: var(--${types[0]})">
-    ${listOfAllPkmn[index].name.toUpperCase()}
+    ${array[index].name.toUpperCase()}
     <span>ID# ${pkmnId}</span>
     <img class="pkmn-tile-img" src="${pkmnImage}" alt="Image of ${pkmnName}">
     <div class="pkmn-tile-type">
@@ -61,7 +61,9 @@ function renderPkmnCard(index) {
 
       <div class="dialogNav">
           <img src="./assets/img/arrow_circle_left_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="Arrow Circle Left" onclick="switchOnOverlay(${index - 1})">
-          <img src="./assets/img/arrow_circle_right_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="Arrow Circle Right" onclick="switchOnOverlay(${index + 1})">
+          <img src="./assets/img/arrow_circle_right_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="Arrow Circle Right" onclick="switchOnOverlay(${
+            index + 1
+          })">
        </div>
 
     </div>
@@ -108,44 +110,6 @@ function renderPkmnBasestats(index) {
     </tr>
     <tr>
       <td class="tdSmall"><label for="pkmnSpeed">Speed:</label></td><td class="tdSmall">${pkmnSpeed}</td><td class="tdBig"><progress id="pkmnSpeed" value="${pkmnSpeed}" max="100">${pkmnSpeed}</progress></td>
-    </tr>
-  `;
-}
-
-function renderPkmnGender(index) {
-  getSinglePkmnInfos(index);
-  return `
-  <table>
-    <tr>
-      <td>Gender</td>
-    </tr>
-    <tr>
-      <td>Height:</td><td>${pkmnHeight} cm</td>
-    </tr>
-    <tr>
-      <td>Weight:</td><td>${pkmnWeight} kg</td>
-    </tr>
-    <tr>
-      <td>Abilities:</td><td>${abilities.map((ability) => `<span">${ability}</span>`).join(", ")}</td>
-    </tr>
-  `;
-}
-
-function renderPkmnShiny(index) {
-  getSinglePkmnInfos(index);
-  return `
-  <table>
-    <tr>
-      <td>Shiny</td>
-    </tr>
-    <tr>
-      <td>Height:</td><td>${pkmnHeight} cm</td>
-    </tr>
-    <tr>
-      <td>Weight:</td><td>${pkmnWeight} kg</td>
-    </tr>
-    <tr>
-      <td>Abilities:</td><td>${abilities.map((ability) => `<span">${ability}</span>`).join(", ")}</td>
     </tr>
   `;
 }

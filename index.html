@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.jpg" />
-  <title>Pokedex</title>
+  <title>The Pokedex</title>
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./styles/standard.css">
   <link rel="stylesheet" href="./styles/assets.css">
@@ -17,10 +17,10 @@
   <header>
     <div class="container search">
       <img src="./assets/img/International_Pokémon_logo.svg.png" alt="Pokemon Logo">
-      <div>        
-        <input type="search" aria-label="Search Pokemons" inputmode="search"
-         placeholder="Pokemon Name" id="pkmnSearch" class="pkmnSearch" oninput="searchInput(event)">
-         <button disabled="disabled" class="pkmnSearchButton" id="pkmnSearchButton">Search</button>
+      <div>
+        <input type="search" aria-label="Search Pokemons" inputmode="search" placeholder="Pokemon Name" id="pkmnSearch"
+          class="pkmnSearch" oninput="searchInput(event)">
+        <button disabled="disabled" class="pkmnSearchButton" id="pkmnSearchButton" onclick="pkmnFind()">Search</button>
       </div>
     </div>
   </header>
@@ -29,7 +29,7 @@
     <div class="container">
       <div id="pkmn-content" class="content"></div>
       <div class="flexCenter">
-        <button class="loadMoreButton" onclick="loadPkmn()">Load more Pokemons</button>
+        <button id="loadMoreButton" class="loadMoreButton" onclick="init()">Load more Pokemons</button>
       </div>
     </div>
   </main>
