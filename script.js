@@ -117,9 +117,14 @@ function firstUpperLetter(num) {
   return firstLetterCap + remainingLetters;
 }
 
-function filterByName(event) {
+function searchInput(event) {
   const searchTerm = event.target.value;
+  const pkmnSearchButton = document.getElementById("pkmnSearchButton");
+  if (searchTerm.length >= 3) {
+    pkmnSearchButton.removeAttribute("disabled");
+  } else {
+    pkmnSearchButton.setAttribute("disabled", "");
+  }
+  
   console.log(searchTerm);
-  // const result = listOfAllPkmn.filter((el) => el.toLowerCase().includes(searchTerm.toLowerCase()));
-  // console.log(result);  
 }
