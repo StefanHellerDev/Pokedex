@@ -1,7 +1,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let listOfAllPkmn = [];
 let offset = 0;
-let limit = 12;
+let limit = 4;
 let singlePkmns = [];
 let content = document.getElementById("pkmn-content");
 let searchTerm = "";
@@ -34,7 +34,7 @@ async function fetchPkmn(ext, offset, limit) {
 }
 
 async function loadDisplayPkmn(array, count, start) {
-  singlePkmns = [];
+  // singlePkmns = [];
   loaderOn();
   for (let index = 0; index < count; index++) {
     const pokemon = await loadSinglePokemons(array, index + start);
@@ -42,7 +42,7 @@ async function loadDisplayPkmn(array, count, start) {
   }
   for (let index = 0; index < count; index++) {
     showTilesTemplate(array, index + start);
-  }  
+  }
   setTimeout(loaderOff, 500);
   return;
 }
@@ -131,17 +131,18 @@ function searchInput(event) {
 }
 
 function pkmnFind() {
-  console.log("search");
+  console.log("search"); // DELETE
   searchResult = filterItems(listOfAllPkmn, searchTerm);
-  console.table(searchResult);
+  console.table(searchResult); // DELETE
   content.innerHTML = "";
-  loadDisplayPkmn(searchResult, searchResult.length, 0);
-  const loadButton = document.getElementById("loadMoreButton");
+  const loadButton = document.getElementById("loadMoreButtonId");
   loadButton.classList.add("d_none");
-  // document.getElementById("pkmnSearch").addEventListener("search", init());
+  loadDisplayPkmn(searchResult, searchResult.length, 0);
+  // if (searchTerm == 0) {
+  //   console.log("Wieder leer!");    
+  // }
 }
 
 function filterItems(arr, query) {
   return arr.filter((el) => el.name.toLowerCase().includes(query.toLowerCase()));
 }
-

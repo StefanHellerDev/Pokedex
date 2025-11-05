@@ -44,12 +44,14 @@ function renderPkmnCard(index) {
   <div class="pkmnCardOuter" style="background-image: linear-gradient(to right, var(--${types[0]}2), #181717)">
     <div id="${index}" class="pkmnCardInner bg-${backgroundType}" style="background-color: var(--${types[0]})">
       <span class="text-center">${pkmnName.toUpperCase()} #${pkmnId}</span>
+
       <div class="cardTypesImg">
         <div class="pkmn-card-type">
           ${types.map((type) => `<span class="type">${type}</span>`).join("")}
         </div>
         <img class="pkmn-tile-img" src="${pkmnImage}" alt="Image of ${pkmnName}">        
       </div>
+
       <div class="pkmnCardInfoPart">
         <div class="pkmnCardInfoPartHeader">
           <span class="pkmnCardInfoPartHeaderButtons" onclick="cardInfoSectionChanger(${index}, 1)">About</span>
@@ -60,10 +62,8 @@ function renderPkmnCard(index) {
       </div>
 
       <div class="dialogNav">
-          <img src="./assets/img/arrow_circle_left_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="Arrow Circle Left" onclick="switchOnOverlay(${index - 1})">
-          <img src="./assets/img/arrow_circle_right_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="Arrow Circle Right" onclick="switchOnOverlay(${
-            index + 1
-          })">
+          <img src="./assets/img/arrow_circle_left.png" alt="Arrow Circle Left" onclick="switchOnOverlay(${index - 1})">
+          <img src="./assets/img/arrow_circle_right.png" alt="Arrow Circle Right" onclick="switchOnOverlay(${index + 1})">
        </div>
 
     </div>
