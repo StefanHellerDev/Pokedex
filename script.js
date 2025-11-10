@@ -1,7 +1,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let listOfAllPkmn = [];
 let offset = 0;
-let limit = 4;
+let limit = 5;
 let singlePkmns = [];
 let content = document.getElementById("pkmn-content");
 let searchTerm = "";
@@ -34,15 +34,17 @@ async function fetchPkmn(ext, offset, limit) {
 }
 
 async function loadDisplayPkmn(array, count, start) {
-  // singlePkmns = [];
   loaderOn();
   for (let index = 0; index < count; index++) {
     const pokemon = await loadSinglePokemons(array, index + start);
     singlePkmns.push(pokemon);
   }
+  console.table(singlePkmns);
+
   for (let index = 0; index < count; index++) {
     showTilesTemplate(array, index + start);
   }
+
   setTimeout(loaderOff, 500);
   return;
 }
@@ -121,28 +123,37 @@ function firstUpperLetter(num) {
 
 function searchInput(event) {
   searchTerm = event.target.value;
+  console.log(searchTerm); // *********************** DELETE ***************
   const pkmnSearchButton = document.getElementById("pkmnSearchButton");
   if (searchTerm.length >= 3) {
     pkmnSearchButton.removeAttribute("disabled");
+    pkmnFind();
+  } else if (searchTerm.length == 0) {
+    limit = offset;
+    offset = 0;
+    content.innerHTML = "";
+    const loadButton = document.getElementById("loadMoreButtonId");
+    loadButton.classList.remove("d_none");
+    loadDisplayPkmn(listOfAllPkmn, limit, offset);
   } else {
     pkmnSearchButton.setAttribute("disabled", "");
   }
-  console.log(searchTerm);
 }
 
 function pkmnFind() {
-  console.log("search"); // DELETE
+  console.log("Search:"); // *********************** DELETE ***************
   searchResult = filterItems(listOfAllPkmn, searchTerm);
-  console.table(searchResult); // DELETE
+  console.log("Searchresults:"); // *********************** DELETE ***************
+  console.table(searchResult); // *********************** DELETE ***************
   content.innerHTML = "";
   const loadButton = document.getElementById("loadMoreButtonId");
   loadButton.classList.add("d_none");
   loadDisplayPkmn(searchResult, searchResult.length, 0);
   // if (searchTerm == 0) {
-  //   console.log("Wieder leer!");    
+  //   console.log("Wieder leer!");
   // }
 }
 
-function filterItems(arr, query) {
-  return arr.filter((el) => el.name.toLowerCase().includes(query.toLowerCase()));
+function filterItems(array, query) {
+  return array.filter((el) => el.name.toLowerCase().includes(query.toLowerCase()));
 }
