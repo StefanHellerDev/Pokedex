@@ -1,7 +1,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let listOfAllPkmn = [];
 let offset = 0;
-let limit = 5;
+let limit = 20;
 let singlePkmns = [];
 let content = document.getElementById("pkmn-content");
 let searchTerm = "";
@@ -33,13 +33,9 @@ async function loadDisplayPkmn(array, count, start) {
     const pokemon = await loadSinglePokemons(array, index + start);
     singlePkmns.push(pokemon);
   }
-  console.log("Array singlePkmns:"); // *********************** DELETE ***************
-  console.table(singlePkmns); // *********************** DELETE ***************
-
   for (let index = 0; index < count; index++) {
     showTilesTemplate(array, index + start);
   }
-
   setTimeout(loaderOff, 500);
   return;
 }
@@ -67,7 +63,6 @@ function switchOnOverlay(index) {
   } else if (index == offset) {
     index = 0;
   }
-
   let overlayRef = document.getElementById("overlay");
   overlayRef.classList.remove("d_none");
   let pkmnCardRef = document.getElementById("dialog");
@@ -118,7 +113,6 @@ function firstUpperLetter(num) {
 
 function searchInput(event) {
   searchTerm = event.target.value;
-  console.log(searchTerm); // *********************** DELETE ***************
   const pkmnSearchButton = document.getElementById("pkmnSearchButton");
   if (searchTerm.length >= 3) {
     singlePkmns = [];
@@ -137,10 +131,7 @@ function searchInput(event) {
 }
 
 function pkmnFind() {
-  console.log("Search:"); // *********************** DELETE ***************
   searchResult = filterItems(listOfAllPkmn, searchTerm);
-  console.log("Array searchResult:"); // *********************** DELETE ***************
-  console.table(searchResult); // *********************** DELETE ***************
   content.innerHTML = "";
   const loadButton = document.getElementById("loadMoreButtonId");
   loadButton.classList.add("d_none");
@@ -152,26 +143,38 @@ function filterItems(array, query) {
 }
 
 function getSinglePkmnInfos(index) {
-  pkmnName = singlePkmns[index].name;
-  pkmnId = singlePkmns[index].id;
-  pkmnImage = singlePkmns[index].sprites.other["official-artwork"].front_default;
-  backgroundType = singlePkmns[index].types[0].type.name;
-  pkmnTypes = singlePkmns[index].types;
-  types = pkmnTypes.map((t) => t.type.name);
-  const word = singlePkmns[index].species.name;
-  const firstLetter = word.charAt(0);
-  const firstLetterCap = firstLetter.toUpperCase();
-  const remainingLetters = word.slice(1);
-  pkmnSpecies = firstLetterCap + remainingLetters;
+  getSinglePkmnTileInfo(index);
+  getSinglePkmnSpecies(index);
   pkmnHeight = singlePkmns[index].height;
   pkmnWeight = singlePkmns[index].weight;
-  pkmnAbilities = singlePkmns[index].abilities;
-  abilities = pkmnAbilities.map((t) => t.ability.name);
-  abilities = abilities.map(firstUpperLetter);
+  getSinglePkmnAbilities(index);
   pkmnHp = singlePkmns[index].stats[0].base_stat;
   pkmnAttack = singlePkmns[index].stats[1].base_stat;
   pkmnDefense = singlePkmns[index].stats[2].base_stat;
   pkmnSpecialattack = singlePkmns[index].stats[3].base_stat;
   pkmnSpecialdefense = singlePkmns[index].stats[4].base_stat;
   pkmnSpeed = singlePkmns[index].stats[5].base_stat;
+}
+
+function getSinglePkmnAbilities(index) {
+  pkmnAbilities = singlePkmns[index].abilities;
+  abilities = pkmnAbilities.map((t) => t.ability.name);
+  abilities = abilities.map(firstUpperLetter);
+}
+
+function getSinglePkmnSpecies(index) {
+  const word = singlePkmns[index].species.name;
+  const firstLetter = word.charAt(0);
+  const firstLetterCap = firstLetter.toUpperCase();
+  const remainingLetters = word.slice(1);
+  pkmnSpecies = firstLetterCap + remainingLetters;
+}
+
+function getSinglePkmnTileInfo(index) {
+  pkmnName = singlePkmns[index].name;
+  pkmnId = singlePkmns[index].id;
+  pkmnImage = singlePkmns[index].sprites.other["official-artwork"].front_default;
+  backgroundType = singlePkmns[index].types[0].type.name;
+  pkmnTypes = singlePkmns[index].types;
+  types = pkmnTypes.map((t) => t.type.name);
 }
