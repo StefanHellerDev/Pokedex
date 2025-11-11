@@ -5,12 +5,7 @@ let limit = 5;
 let singlePkmns = [];
 let content = document.getElementById("pkmn-content");
 let searchTerm = "";
-
-// cardInfoSection = "";
-// console.log(cardInfoSection);
-
 let cardInfoSectionPart = 0;
-
 let pkmnName = [];
 let pkmnId = [];
 let pkmnImage = [];
@@ -24,7 +19,6 @@ async function init() {
   listOfAllPkmn = await fetchPkmn("pokemon/", 0, 10000);
   await loadDisplayPkmn(listOfAllPkmn, limit, offset);
   offset = offset + limit;
-  // switchOnOverlay(2); // Test!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 async function fetchPkmn(ext, offset, limit) {
@@ -39,7 +33,8 @@ async function loadDisplayPkmn(array, count, start) {
     const pokemon = await loadSinglePokemons(array, index + start);
     singlePkmns.push(pokemon);
   }
-  console.table(singlePkmns);
+  console.log("Array singlePkmns:"); // *********************** DELETE ***************
+  console.table(singlePkmns); // *********************** DELETE ***************
 
   for (let index = 0; index < count; index++) {
     showTilesTemplate(array, index + start);
@@ -126,10 +121,11 @@ function searchInput(event) {
   console.log(searchTerm); // *********************** DELETE ***************
   const pkmnSearchButton = document.getElementById("pkmnSearchButton");
   if (searchTerm.length >= 3) {
+    singlePkmns = [];
     pkmnSearchButton.removeAttribute("disabled");
     pkmnFind();
   } else if (searchTerm.length == 0) {
-    limit = offset;
+    singlePkmns = [];
     offset = 0;
     content.innerHTML = "";
     const loadButton = document.getElementById("loadMoreButtonId");
@@ -143,17 +139,39 @@ function searchInput(event) {
 function pkmnFind() {
   console.log("Search:"); // *********************** DELETE ***************
   searchResult = filterItems(listOfAllPkmn, searchTerm);
-  console.log("Searchresults:"); // *********************** DELETE ***************
+  console.log("Array searchResult:"); // *********************** DELETE ***************
   console.table(searchResult); // *********************** DELETE ***************
   content.innerHTML = "";
   const loadButton = document.getElementById("loadMoreButtonId");
   loadButton.classList.add("d_none");
   loadDisplayPkmn(searchResult, searchResult.length, 0);
-  // if (searchTerm == 0) {
-  //   console.log("Wieder leer!");
-  // }
 }
 
 function filterItems(array, query) {
   return array.filter((el) => el.name.toLowerCase().includes(query.toLowerCase()));
+}
+
+function getSinglePkmnInfos(index) {
+  pkmnName = singlePkmns[index].name;
+  pkmnId = singlePkmns[index].id;
+  pkmnImage = singlePkmns[index].sprites.other["official-artwork"].front_default;
+  backgroundType = singlePkmns[index].types[0].type.name;
+  pkmnTypes = singlePkmns[index].types;
+  types = pkmnTypes.map((t) => t.type.name);
+  const word = singlePkmns[index].species.name;
+  const firstLetter = word.charAt(0);
+  const firstLetterCap = firstLetter.toUpperCase();
+  const remainingLetters = word.slice(1);
+  pkmnSpecies = firstLetterCap + remainingLetters;
+  pkmnHeight = singlePkmns[index].height;
+  pkmnWeight = singlePkmns[index].weight;
+  pkmnAbilities = singlePkmns[index].abilities;
+  abilities = pkmnAbilities.map((t) => t.ability.name);
+  abilities = abilities.map(firstUpperLetter);
+  pkmnHp = singlePkmns[index].stats[0].base_stat;
+  pkmnAttack = singlePkmns[index].stats[1].base_stat;
+  pkmnDefense = singlePkmns[index].stats[2].base_stat;
+  pkmnSpecialattack = singlePkmns[index].stats[3].base_stat;
+  pkmnSpecialdefense = singlePkmns[index].stats[4].base_stat;
+  pkmnSpeed = singlePkmns[index].stats[5].base_stat;
 }

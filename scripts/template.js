@@ -12,34 +12,8 @@ function showTilesTemplate(array, index) {
   return;
 }
 
-function getSinglePkmnInfos(index) {
-  pkmnName = singlePkmns[index].name;
-  pkmnId = singlePkmns[index].id;
-  pkmnImage = singlePkmns[index].sprites.other["official-artwork"].front_default;
-  backgroundType = singlePkmns[index].types[0].type.name;
-  pkmnTypes = singlePkmns[index].types;
-  types = pkmnTypes.map((t) => t.type.name);
-  const word = singlePkmns[index].species.name;
-  const firstLetter = word.charAt(0);
-  const firstLetterCap = firstLetter.toUpperCase();
-  const remainingLetters = word.slice(1);
-  pkmnSpecies = firstLetterCap + remainingLetters;
-  pkmnHeight = singlePkmns[index].height;
-  pkmnWeight = singlePkmns[index].weight;
-  pkmnAbilities = singlePkmns[index].abilities;
-  abilities = pkmnAbilities.map((t) => t.ability.name);
-  abilities = abilities.map(firstUpperLetter);
-  pkmnHp = singlePkmns[index].stats[0].base_stat;
-  pkmnAttack = singlePkmns[index].stats[1].base_stat;
-  pkmnDefense = singlePkmns[index].stats[2].base_stat;
-  pkmnSpecialattack = singlePkmns[index].stats[3].base_stat;
-  pkmnSpecialdefense = singlePkmns[index].stats[4].base_stat;
-  pkmnSpeed = singlePkmns[index].stats[5].base_stat;
-}
-
 function renderPkmnCard(index) {
   getSinglePkmnInfos(index);
-
   return `
   <div class="pkmnCardOuter" style="background-image: linear-gradient(to right, var(--${types[0]}2), #181717)">
     <div id="${index}" class="pkmnCardInner bg-${backgroundType}" style="background-color: var(--${types[0]})">
